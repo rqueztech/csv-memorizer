@@ -45,6 +45,7 @@ def print_sorted_custom_map(sorted_custom_map):
 
 def main():
     if not file_path.exists():
+        print("DEBUG! The file does not exist")
         return -1
     restaurant_full_menu = read_in_restaurant_menu()
     restaurant_headers = restaurant_full_menu[0]
