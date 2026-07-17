@@ -1,0 +1,11 @@
+CSV-MEMORIZER-TODO
+===================
+## Priority
+- [] decide on better name than csv-memorizer
+- [] fix pathlib naming to be usable for windows and linux users
+- [] decide on how to architect where files save
+- [] simplify set logic
+
+## Backlog
+- [] add support for tsv users
+- [] develop testing
