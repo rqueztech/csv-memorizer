@@ -227,6 +227,7 @@ __marimo__/
 auto-save-list
 tramp
 .\#*
+*.org
 
 # Org-mode
 .org-id-locations
