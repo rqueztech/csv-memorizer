@@ -1,15 +1,11 @@
 from collections import defaultdict
 from pathlib import Path
+import sys
 
-file_path = Path.home() / "Documents" / "restaurant-menu" / "resources.csv"
-
-def read_in_restaurant_menu() -> list[str]:
-    restaurant_full_menu = []
-    with open(file_path, "r", encoding = "utf-8") as file:
-        results = file.read().splitlines()
-        restaurant_full_menu = [current.split(",") for current in results]
-        
-    return restaurant_full_menu
+def read_in_restaurant_menu() -> list[list[str]]:
+    results = sys.stdin.read().splitlines()
+    sys.stdin = open("/dev/tty", "r")
+    return [line.strip().split(",") for line in results if line.strip()]
 
 def create_index_map(restaurant_full_menu_headers: list[str]) -> dict[int]:
     index_menu = {item: index for index, item in enumerate(restaurant_full_menu_headers)}
@@ -44,8 +40,10 @@ def print_sorted_custom_map(sorted_custom_map):
         print(key, " :: ", value)
 
 def main():
+    filename = sys.argv[1] if len(sys.argv) > 1 else "resources.csv"
+    file_path = Path(filename)
     if not file_path.exists():
-        print("DEBUG! The file does not exist")
+        print("DEBUG! The file does not exist.")
         return -1
     restaurant_full_menu = read_in_restaurant_menu()
     restaurant_headers = restaurant_full_menu[0]
